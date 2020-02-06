@@ -5,18 +5,23 @@ import $ from 'jquery';
 import { UserText } from './scripts';
 
 $(document).ready(function(){
-    $("button").click(function(event) {
+    $("form").submit(function(event) {
         event.preventDefault();
         let userHaiku = new UserText ();
-        userHaiku.line1 = "An old silent pond...";
-        userHaiku.line2 = "A frog jumps into the pond,";
-        userHaiku.line3 = "splash! Silence again.";
+        userHaiku.line1 = $("#line1").val();
+        userHaiku.line2 = $("#line2").val();
+        userHaiku.line3 = $("#line3").val();
         
-        let result = userHaiku.springToArray(userHaiku.line1);
-
-        // let result2 = userHaiku.findSyllables();
-        console.log (userHaiku);
-        console.log (result);
-        // console.log(result2)
+       let result = userHaiku.findSyllables(userHaiku.line1);
+       let result2 = userHaiku.findSyllables(userHaiku.line2);
+       let result3 = userHaiku.findSyllables(userHaiku.line3);
+       
+       if (result === 5 && result2 === 7 && result3 === 5) {
+           $("h1").text("This is Hiaku")
+       } else {
+           $("h1").text("This is not Hiaku")
+       }
     });
 });
+
+

@@ -6,35 +6,46 @@ export class UserText {
     this.line3 = line3;
   }
 
-  springToArray(line){
+  findSyllables(line){
+
     let spring = line.toLowerCase();
     let array = spring.split(" "); 
-    return array; 
+    console.log (array);
+   
+    let vowels = /[aeiouy]/i;
+    // var consonants = /[bcdfghjklmnpqrstvwxz]/i;
+
+    let syllables = 0;
+    
+    for (let i=0; i<array.length; i++){
+      for (let j=0; j<array[i].length; j++){
+        let currLetter = array[i].charAt(j);
+        let nextLetter = array[i].charAt(j+1);
+        let lastLetter = array[i].length-1;
+        let previousLetter = array[i].charAt(j-1);
+        
+        if (currLetter.match(vowels)){
+          
+          if (j === lastLetter && currLetter === "e" && array[i] !== "the" && previousLetter != "l"|| nextLetter.match(vowels)){
+            continue
+          } else {
+            syllables++;
+            console.log (currLetter);
+            console.log (syllables);
+          }
+        }
+      }  
+      // } for (let x=0; x<array[i].length; x++) {
+      //   let consonantCheck = array[i].charAt(x);
+      //   let nextConsonant = array[i].charAt(x+1);
+      //   if (consonantCheck.match(consonants) && nextConsonant == "y") {
+      //     syllables ++
+      //     console.log(syllables);
+      //   } 
+      // }
+    } return syllables
+    
   }
 
-  // findSyllables(){
-  //   let vowels = ["a", "e", "i", "o", "u"];
-  //   array1 = ["an", "old", "silent", "pond..."]
-  //   let syllables = 0;
-
-  //   for (i=0; i<array1.length; i++){
-  //     // array[0] = "an"
-  //     for (j=0; j<array1[i].length; j++){
-  //       let currLetter = array1[i].chataAt(j);
-  //       let lastLetter = array1[i].charAt(array1[i].length-1);
-  //       let nextLetter = array1[i].charAt(j+1);
-  //       // array[0].charaAt(0) = "a"
-  //       if (vowels.includes(currLetter)){
-  //         if (lastLetter === "e" || vowels.includes(nextLetter)){ 
-  //           alert("vowel"); 
-  //         } else {
-  //           syllables++;
-  //           console.log(syllables);
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return syllables;
-  // }
-
 }
+
