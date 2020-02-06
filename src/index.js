@@ -13,7 +13,10 @@ $(document).ready(function(){
         userHaiku.line3 = "splash! Silence again.";
         
         let result = userHaiku.springToArray(userHaiku.line1);
+
+        // let result2 = userHaiku.findSyllables();
         console.log (userHaiku);
         console.log (result);
+        // console.log(result2)
     });
 });
